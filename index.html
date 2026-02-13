@@ -170,6 +170,38 @@
             animation: pulse 2s infinite;
         }
 
+        .love-forever {
+            background: linear-gradient(45deg, #ff1744, #ff5252, #ff1744);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite, bounceIn 1s ease;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
         @keyframes pulse {
             0%, 100% {
                 transform: scale(1);
@@ -382,7 +414,9 @@
             <div class="photo-placeholder" id="photoPlaceholder">💕</div>
         </div>
         
-        <h1>HEY Ashma, My Baby<br>WILL YOU BE MY VALENTINE? 💕</h1>
+        <h1>HEY Ashma, My Baby<br>WILL YOU BE MY VALENTINE? 🙈😋🥰💕</h1>
+        
+        <h1 class="love-forever" id="loveForever" style="display: none;">I LOVE YOU FOREVER 💖</h1>
         
         <div class="buttons" id="buttonContainer">
             <button id="yesBtn">YES</button>
@@ -554,6 +588,12 @@
 
         // Yes button action
         yesBtn.addEventListener('click', () => {
+            // Hide the question
+            document.querySelector('h1:not(.love-forever)').style.display = 'none';
+            
+            // Show "I LOVE YOU FOREVER"
+            document.getElementById('loveForever').style.display = 'block';
+            
             buttonContainer.style.display = 'none';
             response.style.display = 'block';
             celebration.style.display = 'block';
